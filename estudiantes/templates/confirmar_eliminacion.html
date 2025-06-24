@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/registrar_reportar.css' %}">
+
+<div class="form-container">
+   <div class="form-header">
+      <img src="https://cdn-icons-png.flaticon.com/512/3807/3807871.png" alt="" style="width: 64px; height: 64px; margin-bottom: 1rem;">
+      <h2>Confirmar eliminación!</h2>
+      <p>¿Estás seguro de que deseas eliminar al estudiante <br>
+      <B>{{ estudiante.nombre }} {{ estudiante.apellido }}</B>?</p>
+   </div>
+   
+   <form method="post" class="student-form">
+      {% csrf_token %}
+      <div class="form-actions">
+         <button type="submit" name="confirmar" class="btn-eliminar">Eliminar</button>
+         <a href="{% url 'listado_estudiantes' %}" class="btn-secondary">Cancelar</a>
+      </div>
+   </form>
+</div>
+
+{% endblock %}

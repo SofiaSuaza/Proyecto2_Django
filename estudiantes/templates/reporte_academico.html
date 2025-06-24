@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="form-container">
+    <div class="form-header">
+        <h3>Crear Reporte Académico</h3>
+        <p>Complete el formulario para generar un nuevo reporte académico del estudiante</p>
+    </div>
+
+    <form method="post" class="student-form">
+        {% csrf_token %}
+        
+        <div class="form-section">
+            <h4 class="section-title">Información del Estudiante</h4>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Ficha:</label>
+                    <select name="ficha">
+                        {% for estudiante in estudiantes %}
+                            <option value="{{ estudiante.ficha }}">{{ estudiante.ficha }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Estudiante:</label>
+                    <select name="estudiante">
+                        {% for estudiante in estudiantes %}
+                            <option value="{{ estudiante.id }}">{{ estudiante.nombre }} {{ estudiante.apellido }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h4 class="section-title">Detalles del Reporte</h4>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Tipo de Reporte:</label>
+                    <select name="tipo">
+                        <option value="Académico">Académico</option>
+                        <option value="Disciplinario">Disciplinario</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Instructor:</label>
+                    <input type="text" name="instructor">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Detalle:</label>
+                <textarea name="detalle"></textarea>
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Guardar Reporte</button>
+        </div>
+    </form>
+</div>
+
+<div class="form-info">
+    <div class="info-card">
+        <h4>Información Importante</h4>
+        <ul>
+            <li>Todos los campos son obligatorios</li>
+            <li>El detalle del reporte debe ser claro y descriptivo</li>
+            <li>Los reportes quedan registrados en el historial del estudiante</li>
+        </ul>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,95 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Sistema de Reportes{% endblock %}</title>
+    <link rel="stylesheet" href="{% static '/css/estilos.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Reporte Académico</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="{% url 'index' %}">Inicio</a></li>
+            <li><a href="{% url 'registrar' %}">Registrar Estudiante</a></li>
+            <li><a href="{% url 'listado_estudiantes' %}">Listado Estudiantes</a></li>
+            <li><a href="{% url 'reporte' %}">Crear Reporte</a></li>
+            <li><a href="{% url 'listado_reportes' %}">Listado Reportes</a></li>
+        </ul>
+    </nav>
+    <main>
+        {% block content %}
+        <!-- Sección de bienvenida -->
+        <section class="welcome-section">
+            <div class="welcome-content">
+                <h2>Bienvenido al Sistema de Reportes Académicos</h2>
+                <p>Gestiona y administra los reportes académicos de tus estudiantes de manera eficiente y organizada.</p>
+            </div>
+        </section>
+
+        <!-- Tarjetas de acceso rápido -->
+        <section class="quick-access">
+            <h3>Acceso Rápido</h3>
+            <div class="cards-container">
+                <div class="card">
+                    <div class="card-icon">👨‍🎓</div>
+                    <h4>Registrar Estudiante</h4>
+                    <p>Añade nuevos estudiantes al sistema con su información básica</p>
+                    <a href="{% url 'registrar' %}" class="btn-primary">Registrar</a>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">📊</div>
+                    <h4>Crear Reporte</h4>
+                    <p>Genera reportes académicos detallados para seguimiento</p>
+                    <a href="{% url 'reporte' %}" class="btn-primary">Crear Reporte</a>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">📋</div>
+                    <h4>Ver Reportes</h4>
+                    <p>Consulta y revisa los reportes existentes en el sistema</p>
+                    <a href="{% url 'listado_reportes' %}" class="btn-primary">Ver Reportes</a>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Información del sistema -->
+        <section class="system-info">
+            <div class="info-cards">
+                <div class="info-card">
+                    <h4>¿Cómo usar el sistema?</h4>
+                    <ol>
+                        <li>Registra a los estudiantes en el sistema</li>
+                        <li>Crea reportes académicos detallados</li>
+                        <li>Consulta y gestiona la información</li>
+                    </ol>
+                </div>
+                
+                <div class="info-card">
+                    <h4>Características</h4>
+                    <ul>
+                        <li>✅ Registro de estudiantes</li>
+                        <li>✅ Creación de reportes</li>
+                        <li>✅ Interfaz intuitiva</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        {% endblock %}
+    </main>
+
+    <!-- Footer adicional -->
+    <footer class="main-footer">
+        <div class="footer-content">
+            <p>&copy; 2025 Sistema de Reportes Académicos. Desarrollado para la gestión educativa.</p>
+            <p><small>Última actualización: {% now "d/m/Y" %}</small></p>
+        </div>
+    </footer>
+
+    <script src="{% static 'js/app.js' %}"></script>
+</body>
+</html>

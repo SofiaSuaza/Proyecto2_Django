@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/registrar_reportar.css' %}">
+
+<div class="form-container">
+   <div class="form-header">
+      <h2>Editar Reporte</h2>
+   </div>
+   <form method="post" class="student-form">
+      {% csrf_token %}
+      <div class="form-section">
+         <div class="form-grid">
+            <div class="form-group">
+               <label for="nombre">Estudiante:</label>
+               <input type="text" id="nombre" name="nombre" value="{{ reporte.estudiante.nombre }}{{ reporte.estudiante.apellido }}" required>
+            </div>
+
+            <div class="form-group">
+               <label for="tipo">Tipo:</label>
+               <input type="text" id="tipo" name="tipo" value="{{ reporte.tipo }}" required>
+            </div>
+
+            <div class="form-group">
+               <label for="Detalle">Detalle:</label>
+               <input type="text" id="Detalle" name="Detalle"
+               value="{{ reporte.Detalle }}" required>
+            </div>
+
+            <div class="form-group">
+               <label for="Instructor">Instructor:</label>
+               <input type="text" id="Instructor" name="Instructor" value="{{ reporte.Instructor }}" required>
+            </div>
+         </div>
+      </div>
+
+      <div class="form-actions">
+         <button type="submit" class="btn-primary">Guardar Cambios</button>
+      </div>
+   </form>
+</div>
+{% endblock %}

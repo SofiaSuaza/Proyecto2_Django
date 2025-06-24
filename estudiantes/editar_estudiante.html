@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/registrar_reportar.css' %}">
+
+<div>
+   <h2>Editar Estudiante</h2>
+   <form method="post">
+      {% csrf_token %}
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" name="nombre" value="{{ estudiante.nombre }}" required>
+
+   <label for="apellido">Apellido:</label>
+      <input type="text" id="apellido" name="apellido" value="{{ estudiante.apellido }}" required>
+
+      <label for="tipo_documento">Tipo de Documento:</label>
+      <input type="text" id="tipo_documento" name="tipo_documento" value="{{ estudiante.tipo_documento }}" required>
+
+      <label for="numero_documento">Número de Documento:</label>
+            <input type="text" id="numero_documento" name="numero_documento"
+            value="{{ estudiante.numero_documento }}" required>
+
+      <label for="telefono">Teléfono:</label>
+      <input type="text" id="telefono" name="telefono" value="{{ estudiante.telefono }}" required>
+
+      <label for="correo">Correo Electrónico:</label>
+      <input type="email" id="correo" name="correo" value="{{ estudiante.correo }}" required>
+
+      <label for="ficha">Ficha:</label>
+      <input type="text" id="ficha" name="ficha" value="{{ estudiante.ficha }}" required>
+
+      <label for="programa">Programa:</label>
+      <input type="text" id="programa" name="programa" value="{{ estudiante.programa }}" required>
+
+      <label for="horario">Horario:</label>
+      <input type="text" id="horario" name="horario" value="{{ estudiante.horario }}" required>
+
+      <button type="submit">Guardar Cambios</button>
+   </form>
+</div>
+{% endblock %}

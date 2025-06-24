@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Título de página -->
+<h2 class="page-title">Listado de Reportes</h2>
+
+<!-- Estadísticas de la tabla -->
+<div class="table-stats">
+    <p>Total de reportes creados: <span>{{ reportes|length }}</span></p>
+</div>
+
+<!-- Contenedor de tabla -->
+<div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th>Estudiante</th>
+                <th>Tipo</th>
+                <th>Detalle</th> 
+                <th>Fecha</th>
+                <th>Instructor</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for reporte in reportes %}
+            <tr>
+                <td>{{ reporte.estudiante }}</td>
+                <td>{{ reporte.tipo }}</td>
+                <td>{{ reporte.detalle }}</td>
+                <td>{{ reporte.fecha }}</td>
+                <td>{{ reporte.instructor }}</td>
+                <td>
+                    <a href="{% url 'editar_reporte' reporte.id %}" class="btn-editar">🖊 Editar</a>
+                    <a href="{% url 'eliminar_reporte' reporte.id %}" class="btn-eliminar">❌ Eliminar</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6" style="text-align: center; color: #71717a; font-style: italic; padding: 2rem;">
+                    No hay reportes registrados aún. 
+                    <a href="{% url 'reporte' %}" class="btn-primary" style="margin-left: 1rem;">Crear primer reporte</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<!-- Botones exportar -->
+            <div class="botones-exportar">
+            <h2 class="text-center">Exportar Reportes</h2>
+            <a href="{% url 'exportar_pdf' %}" class="btn btn-danger">Exportar PDF</a>
+            <a href="{% url 'exportar_excel' %}" class="btn btn-success">Exportar Excel</a>
+        </div>
+<!-- Botón para regresar o agregar nuevo -->
+<div style="text-align: center; margin-top: 2rem;">
+    <a href="{% url 'reporte' %}" class="btn-primary">➕ Crear Nuevo Reporte</a>
+    <a href="{% url 'index' %}" class="btn-secondary" style="margin-left: 1rem;">🏠 Volver al Inicio</a>
+</div>
+{% endblock %}

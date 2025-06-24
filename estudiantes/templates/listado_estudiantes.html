@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2 class="page-title">Listado de Estudiantes</h2>
+
+<div class="table-stats">
+    <p>Total de estudiantes registrados: <span>{{ estudiantes|length }}</span></p>
+</div>
+
+<div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Tipo Documento</th>
+                <th>Número Documento</th>
+                <th>Teléfono</th>
+                <th>Correo</th>
+                <th>Ficha</th>
+                <th>Programa</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for estudiante in estudiantes %}
+            <tr>
+                <td>{{ estudiante.nombre }}</td>
+                <td>{{ estudiante.apellido }}</td>
+                <td>{{ estudiante.tipo_documento }}</td>
+                <td>{{ estudiante.numero_documento }}</td>
+                <td>{{ estudiante.telefono }}</td>
+                <td>{{ estudiante.correo }}</td>
+                <td>{{ estudiante.ficha }}</td>
+                <td>{{ estudiante.programa }}</td>
+                <td><a href="{% url 'editar_estudiante' estudiante.id %}" class="btn-editar">🖊 Editar</a></td>
+                <td><a href="{% url 'eliminar_estudiante' estudiante.id %}" class="btn-eliminar">❌ Eliminar</a></td>
+                
+            </tr>
+
+            {% empty %}
+            <tr>
+                <td colspan="10" style="text-align: center; color: #71717a; font-style: italic; padding: 2rem;">
+                    No hay estudiantes registrados aún. <a href="{% url 'registrar' %}" class="btn-primary" style="margin-left: 1rem;">Registrar el primero</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<!-- Botones exportar -->
+            <div class="botones-exportar">
+            <h2 class="text-center">Exportar Listado</h2>
+            <a href="{% url 'exportar_pdf' %}" class="btn btn-danger">Exportar PDF</a>
+            <a href="{% url 'exportar_excel' %}" class="btn btn-success">Exportar Excel</a>
+        </div>
+            <!-- Botón para regresar o agregar nuevo -->
+<div style="text-align: center; margin-top: 2rem;">
+    <a href="{% url 'registrar' %}" class="btn-primary">➕ Crear Nuevo Reporte</a>
+    <a href="{% url 'index' %}" class="btn-secondary" style="margin-left: 1rem;">🏠 Volver al Inicio</a>
+</div>
+{% endblock %}
